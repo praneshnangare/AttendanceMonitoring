@@ -27,7 +27,7 @@ public class EmployeeController {
 	public ModelAndView loadEmployeeRegisterPageMethod() {
 		System.out.println("in the register method");
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("register.jsp");
+		modelAndView.setViewName("register");
 		modelAndView.addObject("empBean",new EmployeeBean());
 		return modelAndView;
 	}
@@ -37,10 +37,10 @@ public class EmployeeController {
 		ModelAndView modelAndView = new ModelAndView();
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors().forEach(ls -> System.out.println(ls));
-			modelAndView.setViewName("register.jsp");
+			modelAndView.setViewName("register");
 		}else {
 			Integer id = atd.addEmployee(employeeBean);
-			modelAndView.setViewName("register.jsp");
+			modelAndView.setViewName("register");
 			modelAndView.addObject("msg", "Hello User, Employee has been successfully added with name " + employeeBean.getName() + "  " + id + "  .");
 		}
 		return modelAndView;
@@ -52,7 +52,7 @@ public class EmployeeController {
 		System.out.println("ls " + ls.size());
 		modelAndView.addObject("departmentList", ls);
 		modelAndView.addObject("empBean" , employeeBean);
-		modelAndView.setViewName("register.jsp");
+		modelAndView.setViewName("register");
 		return modelAndView;
 	}
 	@ModelAttribute("GenderMap")

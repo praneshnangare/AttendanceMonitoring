@@ -2,6 +2,7 @@ package com.example.demo.entities;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "employee")
@@ -28,8 +31,14 @@ public class EmployeeEntity {
 	@Temporal(TemporalType.DATE)
 	private Date DOJ;
 	private Integer AllocProject;
+	private Integer status = 1;
 	
-	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	public Integer getEmpId() {
 		return EmpId;
 	}

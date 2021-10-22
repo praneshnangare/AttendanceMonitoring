@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,20 +30,20 @@ public class EmployeeController {
 	public ModelAndView loadEmployeeRegisterPageMethod() {
 		System.out.println("in the register method");
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("register");
+		modelAndView.setViewName("NewFile");
 		modelAndView.addObject("empBean",new EmployeeBean());
 		return modelAndView;
 	}
 	
 	@PostMapping("registerEmployee")
-	public ModelAndView registerEmployee(@ModelAttribute("empBean") EmployeeBean employeeBean , BindingResult bindingResult) {
+	public ModelAndView registerEmployee(@Valid @ModelAttribute("empBean") EmployeeBean employeeBean , BindingResult bindingResult) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		if(bindingResult.hasErrors()) {
 			bindingResult.getAllErrors().forEach(ls -> System.out.println(ls));
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("NewFile");
 		}else {
 			Integer id = atd.addEmployee(employeeBean);
-			modelAndView.setViewName("register");
+			modelAndView.setViewName("NewFile");
 			modelAndView.addObject("msg", "Hello User, Employee has been successfully added with name " + employeeBean.getName() + "  " + id + "  .");
 		}
 		return modelAndView;
@@ -52,7 +55,7 @@ public class EmployeeController {
 		System.out.println("ls " + ls.size());
 		modelAndView.addObject("departmentList", ls);
 		modelAndView.addObject("empBean" , employeeBean);
-		modelAndView.setViewName("register");
+		modelAndView.setViewName("NewFile");
 		return modelAndView;
 	}
 	@ModelAttribute("GenderMap")

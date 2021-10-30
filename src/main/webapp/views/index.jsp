@@ -6,9 +6,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/style.css">
 </head>
 <body>
-<a href="${pageContext.request.contextPath }/loadEmployeeRegisterPage.html">Register Employee</a>
-<a href="${pageContext.request.contextPath }/markattendance">Mark Attendance</a>
+
+<a class="btn button-29" href="${pageContext.request.contextPath }/loadEmployeeRegisterPage.html">Register</a>
+<a class="button-29" href="${pageContext.request.contextPath }/markattendance">Attendance</a>
+<a class="button-29" href="${pageContext.request.contextPath }/reportPage">Reports</a>
 </body>
 </html>
+
+

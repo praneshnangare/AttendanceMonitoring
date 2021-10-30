@@ -62,7 +62,7 @@ var ThemeBg = "";//Background image of Calendar window.
 var PrecedeZero = true;//Preceding zero [true|false]
 var MondayFirstDay = true;//true:Use Monday as first day; false:Sunday as first day. [true|false]  //added in version 1.7
 var UseImageFiles = true;//Use image files with "arrows" and "close" button
-var imageFilesPath = "${pageContext.request.contextPath}/resources/images2/";
+var imageFilesPath = "/resources1/js/images2/";
 //Configurable parameters end
 
 //use the Month and Weekday in your preferred language.
@@ -507,6 +507,7 @@ function GenCell(pValue, pHighLight, pColor, pClickable)
 
 function RenderCssCal(bNewCal)
 {
+	
 	if (typeof bNewCal === "undefined" || bNewCal !== true)
 	{
 		bNewCal = false;
@@ -815,8 +816,8 @@ function RenderCssCal(bNewCal)
 	    vCalTime += "\n<tr>\n<td colspan='7' style=\"text-align:right;\">";
 	    //close button
 	    if (UseImageFiles) {
-	        vCalClosing += "<img onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\"); stopSpin();' src='"+imageFilesPath+"cal_close.gif' width='16px' height='14px' onmouseover='changeBorder(this,0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td>";
-	  
+		
+	        vCalClosing += "<img  onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\"); stopSpin();' src='"+imageFilesPath+"cal_close.gif' width='16px' height='14px' onmouseover='changeBorder(this,0)' onmouseout='changeBorder(this, 1)' style='border:1px solid white'></td>";
 	    }
 	    else {
 	        vCalClosing += "<span id='close_cal' title='close'onmousedown='javascript:closewin(\"" + Cal.Ctrl + "\");stopSpin();' onmouseover='changeBorder(this, 0)'onmouseout='changeBorder(this, 1)' style='border:1px solid white; font-family: Arial;font-size: 10pt;'>x</span></td>";
@@ -909,11 +910,10 @@ function RenderCssCal(bNewCal)
 
 function NewCssCal(pCtrl, pFormat, pScroller, pShowTime, pTimeMode, pShowSeconds, pEnableDateMode)
 {
-	// get current date and time
-
 	dtToday = new Date();
 	Cal = new Calendar(dtToday);
 
+	
 	if (pShowTime !== undefined)
 	{
 	    if (pShowTime) {

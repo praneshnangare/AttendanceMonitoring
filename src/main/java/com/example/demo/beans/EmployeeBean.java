@@ -32,7 +32,7 @@ public class EmployeeBean {
 	@NotEmpty(message = "Please fill this field")
 	private String Email;
 	
-	@NotEmpty(message = "Please fill this field")
+	//@NotEmpty(message = "Please fill this field")
 	private String Department;
 	
 	@NotEmpty(message = "Please fill this field")

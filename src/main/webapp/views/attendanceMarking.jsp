@@ -13,6 +13,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources/css/style.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/datetimepicker.js"></script>
 <script type="text/javascript">
@@ -55,7 +57,6 @@
 				<tr>
 					<th>Name</th>
 					<th>Project</th>
-					<th>Date</th>
 					<th>Status</th>
 					<th>Extra Hrs</th>
 					<th>Remarks</th>

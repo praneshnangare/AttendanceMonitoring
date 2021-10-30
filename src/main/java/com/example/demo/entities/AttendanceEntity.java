@@ -15,8 +15,7 @@ import javax.persistence.TemporalType;
 @Table(name = "attendance")
 public class AttendanceEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer attendanceId;
+	private String attendanceId;
 	private Integer empId;
 	@Temporal(TemporalType.DATE)
 	private Date attendanceDate;
@@ -31,10 +30,10 @@ public class AttendanceEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Integer getAttendanceId() {
+	public String getAttendanceId() {
 		return attendanceId;
 	}
-	public void setAttendanceId(Integer attendanceId) {
+	public void setAttendanceId(String attendanceId) {
 		this.attendanceId = attendanceId;
 	}
 	public Integer getEmpId() {

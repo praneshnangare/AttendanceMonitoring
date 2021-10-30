@@ -9,9 +9,9 @@
 <html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
-<!---<title> Responsive Registration Form | CodingLab </title>--->
+<!---<title> Responsive Registration Form | CodingLab </title> --->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/style.css">
+	href="${pageContext.request.contextPath }/resources/css/NewFile.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/datetimepicker.js"></script>
@@ -58,15 +58,16 @@
 							placeholder="Enter your Adhar No" required="true" />
 						<form:errors class="errors" path="AdharCardNo" />
 					</div>
-					<div class="input-box">
-						<span class="details">Password</span> <input type="password"
-							placeholder="Enter your password" required="true">
-					</div>
-					<div class="input-box">
-						<span class="details">Confirm Password</span> <input
-							type="password" placeholder="Confirm your password"
-							required="true">
-					</div>
+					
+<!-- 					<div class="input-box"> -->
+<!-- 						<span class="details">Password</span> <input type="password" -->
+<!-- 							placeholder="Enter your password" required="true"> -->
+<!-- 					</div> -->
+<!-- 					<div class="input-box"> -->
+<!-- 						<span class="details">Confirm Password</span> <input -->
+<!-- 							type="password" placeholder="Confirm your password" -->
+<!-- 							required="true"> -->
+<!-- 					</div> -->
 
 
 
@@ -79,19 +80,20 @@
 						<form:errors class="errors" path="AllocProject" />
 					</div>
 
-					<div class="input-box">
-						<span class="details">Department</span>
-						<form:select path="Department">
-							<form:option label="--Select--" value="" />
-							<form:options items="${departmentList }" itemValue="deptId"
-								itemLabel="deptName" />
-						</form:select>
-						<form:errors class="errors" path="Department" />
-					</div>
+<!-- 					<div class="input-box"> -->
+<!-- 						<span class="details">Department</span> -->
+<%-- 						<form:select path="Department"> --%>
+<%-- 							<form:option label="--Select--" value="" /> --%>
+<%-- 							<form:options items="${departmentList }" itemValue="deptId" --%>
+<%-- 								itemLabel="deptName" /> --%>
+<%-- 						</form:select> --%>
+<%-- 						<form:errors class="errors" path="Department" /> --%>
+<!-- 					</div> -->
+					
 					<div class="input-box">
 						<span class="details">Date Of Joining</span>
 						<form:input readonly = "true" id="dateTimePicker1" path="DOJ" required="true"
-							onclick="javascript:NewCssCal('dateTimePicker1' , 'ddMMMyyyy','','','','','past')" />
+							placeholder="Enter your Date of Joining" onclick="javascript:NewCssCal('dateTimePicker1' , 'ddMMMyyyy','','','','','past')" />
 						
 						<form:errors class="errors" path="DOJ" />
 					</div>
@@ -101,7 +103,7 @@
 							placeholder="Enter your Per Day Pay" required="true" />
 						<form:errors class="errors" path="PerDay" />
 					</div>
-				</div>
+				
 				<div class="gender-details">
 					<input type="radio" value = "male" name="gender" id="dot-1"> <input
 						type="radio" value ="female" name="gender" id="dot-2"> <span
@@ -113,6 +115,7 @@
 							class="gender">Female</span>
 						</label>
 					</div>
+				</div>
 				</div>
 				<div class="button">
 					<input type="submit" value="Register">

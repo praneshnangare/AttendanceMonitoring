@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.beans.AttendanceBean;
@@ -20,6 +21,7 @@ import com.example.demo.entities.ProjectEntity;
 import com.example.demo.service.AttendanceService;
 
 @Controller
+@SessionAttributes({"employeeMap" , "ProjectMap"})
 public class AttendanceController {
 
 	@Autowired
@@ -28,7 +30,7 @@ public class AttendanceController {
 	@GetMapping("markattendance")
 	public ModelAndView markAttendance() {
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("attendanceMarking");
+		modelAndView.setViewName("attendance_marking");
 		AttendanceFormBean attendanceFormBean = new AttendanceFormBean();
 		attendanceFormBean.setAttendanceList(getAttendanceBeanList());
 		modelAndView.addObject("attendanceForm", attendanceFormBean);
@@ -38,7 +40,7 @@ public class AttendanceController {
 	public ModelAndView submitAttendance(@ModelAttribute("attendanceForm") AttendanceFormBean attendanceFormBean) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName("success");
-		attendanceFormBean.getAttendanceList().forEach(l -> System.out.println("extra  "+ l.getExtraHours() + "   " + l.getRemarks()));
+		attendanceFormBean.getAttendanceList().forEach(l -> System.out.println("extra  "+ l.getAttendanceDate() + "   " + l.getRemarks()));
 		atd.saveAttendanceRecord(attendanceFormBean.getAttendanceList());
 		return modelAndView;
 		
@@ -59,6 +61,7 @@ public class AttendanceController {
 	
 	@ModelAttribute("employeeMap")
 	public Map<Integer, EmployeeBean> createEmployeeMap(){
+		System.out.println("employee bean map in the attendance controller");
 		List<EmployeeBean> ls = atd.getAllActiveEmployeeList();
 		Map<Integer, EmployeeBean> map = new HashMap<Integer , EmployeeBean>(); 
 		for (EmployeeBean employeeBean : ls) {
@@ -69,6 +72,7 @@ public class AttendanceController {
 	
 	@ModelAttribute("ProjectMap")
 	public Map<Integer, String> createProjectMap(){
+		System.out.println("project map in the attendance controller");
 		Map<Integer, String> map = new HashMap<Integer , String>();
 		List<ProjectEntity> projList = atd.getAllProjects();
 		projList.forEach(proj -> map.put(proj.getProjectId(), proj.getProjectName()));

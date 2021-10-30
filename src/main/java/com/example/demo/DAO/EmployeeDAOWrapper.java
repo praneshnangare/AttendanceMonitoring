@@ -1,7 +1,10 @@
 package com.example.demo.DAO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +84,15 @@ public class EmployeeDAOWrapper {
 		}
 		return beanls;
 	}
+	
+//	public Map<Integer, String> getAllActiveEmployeeMap(){
+//		Map<Integer, String> map = new HashMap<Integer , String>();
+//		List<EmployeeBean> ls =  getAllActiveEmployeeList();
+//		for (EmployeeBean employeeBean : ls) {
+//			map.put(employeeBean.getEmpId(), employeeBean.getName());
+//		}
+//		return map;
+//	}
 
 
 	public void saveAttendanceRecord(List<AttendanceBean> ls) {
@@ -96,6 +108,8 @@ public class EmployeeDAOWrapper {
 		for (AttendanceBean attendanceBean : ls) {
 			AttendanceEntity entity = new AttendanceEntity();
 			BeanUtils.copyProperties(attendanceBean, entity);
+			System.out.println("id- > "+ entity.getEmpId().toString() + " " + entity.getAttendanceDate().toString());
+			entity.setAttendanceId(entity.getEmpId().toString() +"_"+ new SimpleDateFormat("ddMMMyyyy").format(entity.getAttendanceDate()).toString());
 			entities.add(entity);
 		}
 		return entities;

@@ -2,12 +2,15 @@ package com.example.demo.beans;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class AttendanceBean {
 	private Integer empId;
 	private String name;
 	private String status;
 	private Integer extraHours;
 	private String remarks;
+	@DateTimeFormat(pattern = "dd-MMM-yyyy")
 	private Date attendanceDate;
 	
 	public String getName() {

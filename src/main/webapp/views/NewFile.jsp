@@ -11,10 +11,10 @@
 <meta charset="UTF-8">
 <!---<title> Responsive Registration Form | CodingLab </title> --->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/css/NewFile.css">
+	href="${pageContext.request.contextPath }/resources1/css/NewFile.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/datetimepicker.js"></script>
+	src="${pageContext.request.contextPath}/resources1/js/datetimepicker.js"></script>
 <script type="text/javascript">
 	function getDepartmentList() {
 		document.forms["form1"].action = "${page}/getDepartmentList.html";

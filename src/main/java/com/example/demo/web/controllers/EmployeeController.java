@@ -44,7 +44,7 @@ public class EmployeeController {
 		}else {
 			Integer id = atd.addEmployee(employeeBean);
 			modelAndView.setViewName("NewFile");
-			modelAndView.addObject("msg", "Hello User, Employee has been successfully added with name " + employeeBean.getName() + "  " + id + "  .");
+			modelAndView.addObject("msg", "Hello User, Employee has been successfully added with name " + employeeBean.getName() +".");
 		}
 		return modelAndView;
 	}

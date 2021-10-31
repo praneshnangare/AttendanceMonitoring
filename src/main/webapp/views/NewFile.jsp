@@ -12,6 +12,8 @@
 <!---<title> Responsive Registration Form | CodingLab </title> --->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources1/css/NewFile.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources1/css/header.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources1/js/datetimepicker.js"></script>
@@ -22,9 +24,20 @@
 		document.forms["form1"].submit();
 	}
 </script>
+
+
+
 </head>
 <body>
-	<div class="container">
+
+<div class = "ong">
+<div class="topnav">
+  <a class="active" href="/">Home</a>
+  <a href="${pageContext.request.contextPath }/loadEmployeeRegisterPage.html">Register</a>
+  <a href="${pageContext.request.contextPath }/markattendance">Attendance</a>
+  <a href="${pageContext.request.contextPath }/reportPage">Reports</a>
+</div>
+<div class="container">
 		<div class="title">Registration</div>
 		<div class="content">
 			<form:form name="form1" modelAttribute="empBean"
@@ -73,7 +86,7 @@
 
 					<div class="input-box">
 						<span class="details">Allocated Project</span>
-						<form:select path="AllocProject" onchange="getDepartmentList();">
+						<form:select path="AllocProject">
 							<form:option label="--Select--" value="" />
 							<form:options items="${ProjectMap }" />
 						</form:select>
@@ -103,7 +116,7 @@
 							placeholder="Enter your Per Day Pay" required="true" />
 						<form:errors class="errors" path="PerDay" />
 					</div>
-				
+				</div>
 				<div class="gender-details">
 					<input type="radio" value = "male" name="gender" id="dot-1"> <input
 						type="radio" value ="female" name="gender" id="dot-2"> <span
@@ -116,7 +129,7 @@
 						</label>
 					</div>
 				</div>
-				</div>
+				
 				<div class="button">
 					<input type="submit" value="Register">
 				</div>
@@ -124,7 +137,7 @@
 			<h3>${msg}</h3>
 		</div>
 	</div>
-
+</div>
 </body>
 </html>
 

@@ -14,6 +14,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/resources1/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/resources1/css/header.css">
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources1/js/datetimepicker.js"></script>
 <%
@@ -21,16 +23,16 @@ SimpleDateFormat df = new SimpleDateFormat(DATE_FORMAT_NOW);
 String date = df.format(new Date());
 %>
 <script type="text/javascript">
-function cll1(){
-	console.log("nope this not");
-	document.getElementById("toDate").value = document.getElementById("fromDate").value;
-}
+	function cll1() {
+		console.log("nope this not");
+		document.getElementById("toDate").value = document
+				.getElementById("fromDate").value;
+	}
 </script>
 <style>
-body {
-	align-items: flex-start;
-}
-
+/* body { */
+/* 	align-items: flex-start; */
+/* } */
 form .category label {
 	display: flex;
 	align-items: center;
@@ -47,92 +49,104 @@ form .category {
 </style>
 </head>
 <body>
+	<div class="ong">
+		<div class="topnav">
+			<a href="/">Home</a> <a
+				href="${pageContext.request.contextPath }/loadEmployeeRegisterPage.html">Register</a>
+			<a href="${pageContext.request.contextPath }/markattendance">Attendance</a>
+			<a class="active"
+				href="${pageContext.request.contextPath }/reportPage">Reports</a>
+		</div>
+		<div class="content">
+			<div class="user-details">
 
-	<div class="user-details">
+				<form:form modelAttribute="dateAndName" method="get"
+					action="getAttendanceDetails">
+					<div id="emp" style="display: block" class="input-box">
 
-		<form:form modelAttribute="dateAndName" method="get"
-			action="getAttendanceDetails">
-			<div id="emp" style="display: block" class="input-box">
+						<form:select path="empId">
+							<form:option label="All" value="-1" />
+							<form:options items="${empMap }" />
+						</form:select>
 
-				<form:select path="empId">
-					<form:option label="All" value="-1" />
-					<form:options items="${empMap }" />
-				</form:select>
+						<form:input id="fromDate" path="fromDate" type="text"
+							value="<%=date%>"
+							onclick="javascript:NewCssCal('fromDate' , 'ddMMMyyyy','','','','','past');"
+							onchange="cll1();" style="cursor: pointer"></form:input>
 
-				<form:input id="fromDate" path="fromDate" type="text"
-					value="<%=date%>"
-					onclick="javascript:NewCssCal('fromDate' , 'ddMMMyyyy','','','','','past');" onchange ="cll1();"
-					style="cursor: pointer" ></form:input>
+						<form:input id="toDate" path="toDate" type="text"
+							value="<%=date%>"
+							onfocus="javascript:NewCssCal('toDate' , 'ddMMMyyyy','','','','','past')"
+							style="cursor: pointer"></form:input>
 
-				<form:input id="toDate" path="toDate" type="text" value="<%=date%>"
-					onfocus="javascript:NewCssCal('toDate' , 'ddMMMyyyy','','','','','past')"
-					style="cursor: pointer"></form:input>
-
-			</div>
-			<input class="button-29" type="submit" value="Submit">
-		</form:form>
-
-		<c:if test="${not empty attendanceForm.attendanceList}">
-			<form:form modelAttribute="attendanceForm" method="post"
-				action="saveAttendanceRecords">
-				<div class="in1">
-					<table>
-						<tr>
-							<th><div class="input-box">
-									<span class="details">Name</span>
-								</div></th>
-							<th><div class="input-box">
-									<span class="details">Project</span>
-								</div></th>
-							<th><div class="input-box">
-									<span class="details">Status</span>
-								</div></th>
-							<th><div class="input-box">
-									<span class="details">Extra Hrs</span>
-								</div></th>
-							<th><div class="input-box">
-									<span class="details">Remarks</span>
-								</div></th>
-						</tr>
-						<c:forEach items="${attendanceForm.attendanceList}" varStatus="i"
-							var="itr">
-							<tr>
-								<form:input type="hidden"
-									path="attendanceList[${i.index}].empId" value="${itr.empId}" />
-								<form:hidden class="dateClass"
-									path="attendanceList[${i.index}].attendanceDate" />
-								<td><div class="input-box">
-										<form:input type="text" readonly="true"
-											path="attendanceList[${i.index}].name"
-											value="${employeeMap[itr.empId].name}" />
-									</div></td>
-								<td><div class="input-box">
-										<input type="text" readonly="true"
-											value="${ProjectMap[employeeMap[itr.empId].allocProject]}" />
-									</div></td>
-
-								<td><div class="input-box">
-										<form:select path="attendanceList[${i.index}].status">
-											<form:option value="P" label="Present" />
-											<form:option value="A" label="Absent" />
-											<form:option value="H" label="Half-Day" />
-										</form:select>
-									</div></td>
-								<td><div class="input-box">
-										<form:input path="attendanceList[${i.index}].extraHours" /></td>
-								<td><div class="input-box">
-										<form:input path="attendanceList[${i.index}].remarks" />
-									</div></td>
-							</tr>
-						</c:forEach>
-					</table>
-					<div class="button">
-						<input type="submit" value="Submit" onclick="setDates();">
 					</div>
-			</form:form>
-		</c:if>
-	</div>
+					<input class="button-29" type="submit" value="Submit">
+				</form:form>
+				
+				<div class = "frm">
+				<c:if test="${not empty attendanceForm.attendanceList}">
+					<form:form modelAttribute="attendanceForm" method="post"
+						action="saveAttendanceRecords">
+						<div class="in1">
+							<table>
+								<tr>
+									<th><div class="input-box">
+											<span class="details">Name</span>
+										</div></th>
+									<th><div class="input-box">
+											<span class="details">Project</span>
+										</div></th>
+									<th><div class="input-box">
+											<span class="details">Status</span>
+										</div></th>
+									<th><div class="input-box">
+											<span class="details">Extra Hrs</span>
+										</div></th>
+									<th><div class="input-box">
+											<span class="details">Remarks</span>
+										</div></th>
+								</tr>
+								<c:forEach items="${attendanceForm.attendanceList}"
+									varStatus="i" var="itr">
+									<tr>
+										<form:input type="hidden"
+											path="attendanceList[${i.index}].empId" value="${itr.empId}" />
+										<form:hidden class="dateClass"
+											path="attendanceList[${i.index}].attendanceDate" />
+										<td><div class="input-box">
+												<form:input type="text" readonly="true"
+													path="attendanceList[${i.index}].name"
+													value="${employeeMap[itr.empId].name}" />
+											</div></td>
+										<td><div class="input-box">
+												<input type="text" readonly="true"
+													value="${ProjectMap[employeeMap[itr.empId].allocProject]}" />
+											</div></td>
 
+										<td><div class="input-box">
+												<form:select path="attendanceList[${i.index}].status">
+													<form:option value="P" label="Present" />
+													<form:option value="A" label="Absent" />
+													<form:option value="H" label="Half-Day" />
+												</form:select>
+											</div></td>
+										<td><div class="input-box">
+												<form:input path="attendanceList[${i.index}].extraHours" /></td>
+										<td><div class="input-box">
+												<form:input path="attendanceList[${i.index}].remarks" />
+											</div></td>
+									</tr>
+								</c:forEach>
+							</table>
+							<div class="button">
+								<input type="submit" value="Submit" onclick="setDates();">
+							</div>
+					</form:form>
+				</c:if>
+				</div>
+				</div>
+		</div>
+	</div>
 </body>
 </html>
 
